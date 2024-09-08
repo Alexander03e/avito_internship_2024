@@ -15,10 +15,14 @@ type Props = {
 
 export const AdvertisementsList = ({ className }: Props): ReactElement => {
     const {
-        state: { searchAdValue },
+        state: { searchAdValue, currentAdLimit, currentAdPage },
     } = useAppContext();
 
-    const { data, isLoading, isError } = useAllAdvertisement({ searchQuery: searchAdValue });
+    const { data, isLoading, isError } = useAllAdvertisement({
+        searchQuery: searchAdValue,
+        limit: currentAdLimit,
+        start: currentAdPage * currentAdLimit,
+    });
 
     const onChange = () => {};
 
@@ -39,7 +43,7 @@ export const AdvertisementsList = ({ className }: Props): ReactElement => {
                 <Card key={item.id} {...item} />
             ))}
 
-            <Pagination itemsPerPage={10} onChange={onChange} />
+            <Pagination currentItemsLength={size(data)} itemsPerPage={10} onChange={onChange} />
         </div>
     );
 };

@@ -8,6 +8,11 @@
 
     @include default-medium;
 
+    &:disabled {
+        cursor: default;
+        opacity: 0.5;
+    }
+
     &.empty {
         padding: 2px;
         color: var(--primary-text-color);

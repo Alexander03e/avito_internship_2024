@@ -2,6 +2,8 @@
 export interface IAppState {
     activeModal: TAppModals | null
     searchAdValue: string | null;
+    currentAdPage: number
+    currentAdLimit: number
 }
 
 /** Интерфейс контекста */

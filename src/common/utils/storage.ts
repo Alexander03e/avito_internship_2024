@@ -35,6 +35,21 @@ export class LocalStorage {
         localStorage.removeItem(key)
     }
 
+    removeCurrent(key: TStorageKeys, value: string) {
+        const prevValues = localStorage.getItem(key);
+
+        if (prevValues) {
+            let arrValues = JSON.parse(prevValues);
+            const index = arrValues.indexOf(value);
+
+            if (index !== -1) {
+                arrValues.splice(index, 1);
+
+                localStorage.setItem(key, JSON.stringify(arrValues));
+            }
+        }
+    }
+
     get(key: TStorageKeys): string[] {
         const values = localStorage.getItem(key);
     

@@ -17,14 +17,52 @@
         border-radius: var(--radius-x1);
 
         animation: appearance var(--transition);
+
         .historyItem {
             cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
             padding: 4px 8px;
+
             border-radius: var(--radius-x1);
+
             transition: var(--transition);
-            
             &:hover {
                 background-color: rgb(236, 236, 236);
+            }
+
+            & > span {
+                width: 100%;
+            }
+            .removeBtn {
+                position: relative;
+                z-index: 4;
+                font-size: 14px;
+
+            }
+        }
+
+        .historyHeading {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            padding: 4px 8px;
+        }
+
+        .removeAll {
+            align-self: flex-end;
+
+            width: fit-content;
+            margin-bottom: 8px;
+
+            font-size: 14px;
+            color: var(--secondary-special-color);
+
+            &:hover {
+                filter: brightness(0.8);
             }
         }
     }
