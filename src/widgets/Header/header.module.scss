@@ -1,0 +1,28 @@
+@use 'src/assets/styles/fonts' as *;
+
+.wrapper {
+    padding-block: 12px;
+    color: var(--main-color);
+    background-color: var(--second-color);
+
+    .nav {
+        display: flex;
+        gap: 22px;
+
+        & > a {
+            color: var(--main-color);
+            text-decoration: none;
+            transition: var(--transition);
+
+            @include default-small;
+
+            &:global.active {
+                color: var(--secondary-special-color);
+            }
+
+            &:hover {
+
+            }
+        }
+    }
+}

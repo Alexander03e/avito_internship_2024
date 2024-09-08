@@ -1,0 +1,30 @@
+@use 'src/assets/styles/fonts' as *;
+
+.wrapper {
+    padding: 8px 12px;
+
+    @include default-medium;
+
+    background-color: var(--primary-text-color);
+    transition: var(--transition);
+
+    &.empty {
+        padding: 2px;
+        color: var(--primary-text-color);
+        background-color: transparent;
+
+        &:hover {
+            color: var(--secondary-special-color);
+        }
+    }
+
+    &.filled {
+        color: var(--main-color);
+        border-radius: var(--radius-x1);
+        
+        &:hover {
+            background-color: var(--primary-text-color-hovered);
+        }
+    }
+
+}

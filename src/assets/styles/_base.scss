@@ -1,0 +1,43 @@
+body {
+    overflow: hidden auto;
+    display: block;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    
+    font-family: Arial, sans-serif;
+
+    background-color: #fff;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+html[data-no-scroll],
+
+html[data-no-scroll] body {
+    overflow: hidden !important;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+input, textarea {
+    &:-webkit-autofill {
+        &, &:focus, &:active, &:hover {
+            color: inherit !important;
+
+            background-color: initial !important;
+            background-image: none !important;
+            box-shadow: none !important;
+
+            transition: background-color 99999s ease-in-out 0s !important;
+        }
+    }
+}

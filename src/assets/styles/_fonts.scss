@@ -1,0 +1,14 @@
+@mixin default-small {
+    font-size: var(--small-font);
+    line-height: 18px;
+}
+
+@mixin default-medium {
+    font-size: var(--default-font);
+    line-height: 18px;
+}
+
+@mixin default-large {
+    font-size: var(--large-font);
+    line-height: 18px;
+}
