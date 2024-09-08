@@ -18,8 +18,8 @@ export class AdvertisementsApi {
         return this._instance;
     }
 
-    public async getAll(): Promise<Advertisment[]> {
-        return (await this._httpInstance.get(`${ADVERTISEMENTS_URL}`)).data
+    public async getAll(params: string): Promise<Advertisment[]> {
+        return (await this._httpInstance.get(`${ADVERTISEMENTS_URL}?${params}`)).data
     }
 
     public async create(data: TAdvertismentData): Promise<Advertisment> {

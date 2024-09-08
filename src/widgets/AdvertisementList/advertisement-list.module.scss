@@ -1,5 +1,11 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+
+    .heading {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
 }

@@ -1,1 +1,1 @@
-export const ADVERTISEMENTS_URL = 'advertisements/'
+export const ADVERTISEMENTS_URL = 'advertisements'

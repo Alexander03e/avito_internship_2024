@@ -1,2 +1,2 @@
 export { AllAdsModal } from './AllAdsModal'
-export { CreateOrderModal } from './CreateOrderModal'
+export { CreateAdModal } from './CreateAdModal'

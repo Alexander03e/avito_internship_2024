@@ -2,11 +2,11 @@
 
 .wrapper {
     padding: 8px 12px;
-
-    @include default-medium;
-
+    white-space: nowrap;
     background-color: var(--primary-text-color);
     transition: var(--transition);
+
+    @include default-medium;
 
     &.empty {
         padding: 2px;

@@ -1,15 +1,13 @@
-import { Button } from 'common/components/ui';
-import { SearchInput } from 'common/components/ui/SearchInput';
+import { Search } from 'features/Search';
 import { ReactElement } from 'react';
 import { AdvertisementsList } from 'widgets/AdvertisementList';
+import styles from './advertisement-page.module.scss';
 
 export const AdvertisementsPage = (): ReactElement => {
     return (
-        <div>
-            ds
+        <div className={styles.wrapper}>
+            <Search />
             <AdvertisementsList />
-            <SearchInput />
-            <Button variant='empty' label='Button' />
         </div>
     );
 };

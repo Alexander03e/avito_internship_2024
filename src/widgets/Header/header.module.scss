@@ -7,22 +7,30 @@
 
     .nav {
         display: flex;
-        gap: 22px;
+        align-items: center;
+        justify-content: space-between;
 
-        & > a {
-            color: var(--main-color);
-            text-decoration: none;
-            transition: var(--transition);
-
-            @include default-small;
-
-            &:global.active {
-                color: var(--secondary-special-color);
-            }
-
-            &:hover {
-
+        .links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+            
+            & > a {
+                color: var(--main-color);
+                text-decoration: none;
+                transition: var(--transition);
+    
+                @include default-medium;
+    
+                &:global.active {
+                    color: var(--secondary-special-color);
+                }
+    
+                &:hover {
+    
+                }
             }
         }
+        
     }
 }

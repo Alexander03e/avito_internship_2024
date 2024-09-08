@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import styles from './page-layout.module.scss';
 import { Header } from 'widgets/Header';
 import { useAppContext } from 'common/context/hooks';
-import { AllAdsModal, CreateOrderModal } from '../Modals';
+import { AllAdsModal, CreateAdModal } from '../Modals';
 import { Container } from 'common/components/ui/Container';
 
 export const PageLayout = () => {
@@ -18,7 +18,7 @@ export const PageLayout = () => {
                 </Container>
             </main>
             {activeModal === '#all_products' && <AllAdsModal />}
-            {activeModal === '#create_order' && <CreateOrderModal />}
+            {activeModal === '#create_ad' && <CreateAdModal />}
         </>
     );
 };
