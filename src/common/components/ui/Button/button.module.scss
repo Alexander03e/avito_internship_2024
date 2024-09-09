@@ -18,7 +18,7 @@
         color: var(--primary-text-color);
         background-color: transparent;
 
-        &:hover {
+        &:not(:disabled):hover {
             color: var(--secondary-special-color);
         }
     }
@@ -27,8 +27,18 @@
         color: var(--main-color);
         border-radius: var(--radius-x1);
         
-        &:hover {
+        &:not(:disabled):hover {
             background-color: var(--primary-text-color-hovered);
+        }
+    }
+
+    &.warn {
+        color: white;
+        background-color: var(--secondary-special-color);
+        border-radius: var(--radius-x1);
+        
+        &:not(:disabled):hover {
+            background-color: var(--secondary-special-color-hovered);
         }
     }
 

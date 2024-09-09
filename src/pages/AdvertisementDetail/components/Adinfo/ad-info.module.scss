@@ -1,7 +1,6 @@
 .wrapper {
     display: flex;
     gap: 22px;
-    height: 350px;
 
     .info {
         display: flex;
@@ -20,11 +19,27 @@
             flex-direction: column;
             gap: 8px;
             margin-top: 30px;
-        }
+        }    
+    }
 
-        & > button {
-            width: fit-content;
-            margin-top: auto;
+    &.deleted {
+        filter: opacity(0.5);
+    
+        .name {
+            filter: opacity(0.5);
         }
     }
+
 }
+
+.buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 20px;
+
+    & > button {
+            width: 100%;
+        }
+}
+

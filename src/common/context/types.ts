@@ -4,9 +4,11 @@ import { Advertisment } from "common/types/advertisement";
 export interface IAppState {
     activeModal: TAppModals | null
     searchAdValue: string | null;
-    currentAdPage: number
-    currentAdLimit: number
+    currentPage: number
+    currentLimit: number
     adData: Partial<Advertisment> | null
+    currentAdSort: string | null
+    currentAdOrder: string | null
 }
 
 /** Интерфейс контекста */

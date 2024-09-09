@@ -9,7 +9,7 @@ export const useUpdateAd = () => {
   const queryClient = useQueryClient();
   return useMutation(
     {   
-        mutationFn: ({data, id}: {data: TAdvertismentData, id: number}) => api.update(id, data),
+        mutationFn: ({data, id}: {data: TAdvertismentData, id: string}) => api.update(id, data),
         onSuccess: () => {
         queryClient.invalidateQueries({
             queryKey: [KEYS.AD_DETAIL]

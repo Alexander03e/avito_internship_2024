@@ -1,4 +1,4 @@
-import { Search } from 'features/Search';
+import { Search } from 'features/Advertisement/Search';
 import { ReactElement } from 'react';
 import { AdvertisementsList } from 'widgets/AdvertisementList';
 import styles from './advertisement-page.module.scss';

@@ -5,7 +5,7 @@ import { EMPTY_BUTTON } from './consts';
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
     label?: string;
-    variant?: 'empty' | 'filled';
+    variant?: 'empty' | 'filled' | 'warn';
     isEmpty?: boolean;
 };
 

@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { IFormState } from './types';
 import { useAppContext } from 'common/context/hooks';
 import { useUpdateAd } from './hooks/useUpdateAd';
+import { useNavigate } from 'react-router-dom';
 
 export const CreateAdModal = (): ReactElement => {
     const [isLoading, setIsLoading] = useState(false);
@@ -21,6 +22,17 @@ export const CreateAdModal = (): ReactElement => {
 
     const { mutateAsync: createAd } = useCreateAd();
     const { mutateAsync: editAd } = useUpdateAd();
+    const navigate = useNavigate();
+
+    const defaultValues: IFormState | null =
+        activeModal === '#edit_ad'
+            ? {
+                  description: adData?.description ?? '',
+                  imageUrl: adData?.imageUrl ?? '',
+                  name: adData?.name ?? '',
+                  price: adData?.price ?? null,
+              }
+            : null;
 
     const {
         register,
@@ -30,12 +42,7 @@ export const CreateAdModal = (): ReactElement => {
         formState: { errors },
     } = useForm<IFormState>({
         mode: 'onChange',
-        defaultValues: {
-            description: adData?.description,
-            imageUrl: adData?.imageUrl,
-            name: adData?.name,
-            price: adData?.price,
-        },
+        defaultValues: defaultValues ?? {},
     });
 
     const title = adData ? TITLE.UPDATE : TITLE.CREATE;
@@ -46,9 +53,10 @@ export const CreateAdModal = (): ReactElement => {
         try {
             if (activeModal === '#create_ad') {
                 await createAd({ price: Number(price), ...values });
+                navigate('/');
             }
             if (activeModal === '#edit_ad' && adData) {
-                await editAd({ id: Number(adData?.id), data: { price: Number(price), ...values } });
+                await editAd({ id: String(adData?.id), data: { price: Number(price), ...values } });
             }
 
             updateAppState({ activeModal: null });

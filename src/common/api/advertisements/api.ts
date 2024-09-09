@@ -28,17 +28,17 @@ export class AdvertisementsApi {
         })).data
     } 
 
-    public async get(id: number): Promise<Advertisment> {
+    public async get(id: string): Promise<Advertisment> {
         return (await this._httpInstance.get(`${ADVERTISEMENTS_URL}/${id}`)).data
     }
 
-    public async update(id: number, data: Partial<TAdvertismentData>): Promise<Advertisment> {
+    public async update(id: string, data: Partial<TAdvertismentData>): Promise<Advertisment> {
         return (await this._httpInstance.put(`${ADVERTISEMENTS_URL}/${id}`, {
             ...data
         })).data
     }
 
-    public async delete(id: number): Promise<Advertisment> {
-        return (await this._httpInstance.delete(`${ADVERTISEMENTS_URL}${id}`)).data
+    public async delete(id: string): Promise<Advertisment> {
+        return (await this._httpInstance.delete(`${ADVERTISEMENTS_URL}/${id}`)).data
     }
 }

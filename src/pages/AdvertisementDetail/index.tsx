@@ -1,50 +1,29 @@
 import { ReactElement, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import styles from './advertisement-detail.module.scss';
 import { useAdvertisement } from './hooks/queries';
-import { Image } from 'common/components/ui/Image';
-import { formatDate } from 'common/utils/formateDate';
-import { Button, TextWithIcon } from 'common/components/ui';
-import HeartIcon from 'assets/icons/heart.svg?react';
-import EyeIcon from 'assets/icons/eye.svg?react';
 import { useAppContext } from 'common/context/hooks';
+import { Loader } from 'common/components/ui/Loader';
+import { AdError, AdInfo } from './components';
+import { useParams } from 'react-router-dom';
 
 export const AdvertisementDetail = (): ReactElement => {
     const { id } = useParams();
+
     const { updateAppState } = useAppContext();
-    const { data } = useAdvertisement({ id: Number(id) });
 
-    const formattedDate = formatDate(data?.createdAt);
-
-    const editButtonHandler = () => {
-        updateAppState({ activeModal: '#edit_ad' });
-    };
+    const { data, isError, isLoading } = useAdvertisement(String(id));
 
     useEffect(() => {
         if (!data) return;
         updateAppState({ adData: data });
 
         return () => {
-            updateAppState({ adData: null });
+            updateAppState({ adData: null, currentPage: 0 });
         };
     }, [data]);
 
-    return (
-        <div className={styles.wrapper}>
-            <Image imageUrl={data?.imageUrl} size='large' />
+    if (isLoading) return <Loader />;
 
-            <div className={styles.info}>
-                <h2>{data?.name ?? 'Без названия'}</h2>
-                <h2 className={styles.price}>{data?.price ?? 'Цена не указаана'} ₽</h2>
-                {data?.description && <p>{data?.description}</p>}
-                {data?.createdAt && <p className={styles.createdAt}>Создано: {formattedDate}</p>}
+    if (isError) return <AdError />;
 
-                <div className={styles.details}>
-                    <TextWithIcon icon={<EyeIcon />} text={`${data?.views ?? 0} просмотров`} />
-                    <TextWithIcon icon={<HeartIcon />} text={`${data?.likes ?? 0} лайков`} />{' '}
-                </div>
-                <Button onClick={editButtonHandler} label='Редактировать' />
-            </div>
-        </div>
-    );
+    return <AdInfo />;
 };
