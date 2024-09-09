@@ -1,0 +1,32 @@
+.imgWrapper {
+    width: 230px;
+    height: 170px;
+
+    background-color: rgb(215, 215, 215);
+    border-radius: var(--radius-x2);
+
+    transition: var(--transition);
+
+    & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &.fakeImg {
+        padding: 20px;
+    }
+    
+    &.large {
+        width: 450px;
+        height: 350px;
+    }
+
+    &.clickable {
+        cursor: pointer;
+
+        &:hover {
+            filter: brightness(0.75);
+        }
+    }
+}

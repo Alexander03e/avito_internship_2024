@@ -29,11 +29,11 @@ export class AdvertisementsApi {
     } 
 
     public async get(id: number): Promise<Advertisment> {
-        return (await this._httpInstance.post(`${ADVERTISEMENTS_URL}${id}`)).data
+        return (await this._httpInstance.get(`${ADVERTISEMENTS_URL}/${id}`)).data
     }
 
     public async update(id: number, data: Partial<TAdvertismentData>): Promise<Advertisment> {
-        return (await this._httpInstance.patch(`${ADVERTISEMENTS_URL}${id}`, {
+        return (await this._httpInstance.put(`${ADVERTISEMENTS_URL}/${id}`, {
             ...data
         })).data
     }

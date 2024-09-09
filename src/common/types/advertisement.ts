@@ -1,3 +1,5 @@
+import { PartialBy } from "./common";
+
 export type Advertisment = {
     /* Уникальный идентификатор. */
     id: string;
@@ -17,4 +19,4 @@ export type Advertisment = {
     imageUrl?: string;
 }
 
-export type TAdvertismentData = Omit<Advertisment, 'id'>
+export type TAdvertismentData = PartialBy<Omit<Advertisment, 'id'>, 'views' | 'likes' | 'createdAt'>

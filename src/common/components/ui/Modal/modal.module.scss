@@ -1,7 +1,5 @@
 .wrapper {
     position: fixed;
-    position: fixed;
-    z-index: 2;
     top: 0;
     left: 0;
 
@@ -15,12 +13,13 @@
     cursor: default;
 
     position: relative;
-    z-index: 2;
     top: 20px;
+    left: 20px;
 
     display: flex;
     flex-direction: column;
 
+    width: 100%;
     width: auto;
     max-width: 80%;
     margin: 0 auto;

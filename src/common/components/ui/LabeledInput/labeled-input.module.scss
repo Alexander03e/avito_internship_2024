@@ -1,0 +1,54 @@
+@use 'src/assets/styles/fonts' as *;
+
+%input {
+    @include default-medium;
+
+    width: 100%;
+    padding: 8px 12px;
+
+    border: 1px solid var(--text-color);
+    border-radius: var(--radius-x2);
+    outline: none;
+    
+    &:focus {
+        border: 1px solid var(--primary-text-color);
+        transition: var(--transition);
+    }
+}
+
+.label {
+    @include default-medium;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: var(--primary-text-color);
+
+    &.errored {
+        color: var(--secondary-special-color);
+
+        .input {
+            border: 1px solid var(--secondary-special-color);
+        }
+
+        .textarea {
+            border: 1px solid var(--secondary-special-color);            
+        }
+
+    }
+}
+
+.input {
+    @extend %input;
+}
+
+.textarea {
+    @extend %input;
+
+    resize: none;
+}
+
+.error {
+    margin-block: 4px;
+    color: var(--secondary-special-color);
+}

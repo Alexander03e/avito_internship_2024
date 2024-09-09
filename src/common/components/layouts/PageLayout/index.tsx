@@ -19,6 +19,7 @@ export const PageLayout = () => {
             </main>
             {activeModal === '#all_products' && <AllAdsModal />}
             {activeModal === '#create_ad' && <CreateAdModal />}
+            {activeModal === '#edit_ad' && <CreateAdModal />}
         </>
     );
 };

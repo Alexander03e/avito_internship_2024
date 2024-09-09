@@ -1,4 +1,4 @@
-import { MouseEvent, ReactElement, ReactNode, useRef } from 'react';
+import { MouseEvent, ReactElement, ReactNode } from 'react';
 import styles from './modal.module.scss';
 import { useScrollblock } from 'common/hooks';
 import { useAppContext } from 'common/context/hooks';
@@ -13,19 +13,19 @@ export const Modal = ({ children }: Props): ReactElement => {
         state: { activeModal },
     } = useAppContext();
 
-    useScrollblock(activeModal !== null);
-
-    const ref = useRef<HTMLDivElement>(null);
-
-    const modalClick = (e: MouseEvent): void => {
-        if (e.target !== ref.current) {
-            updateAppState({ activeModal: null });
-        }
+    const modalClose = (): void => {
+        updateAppState({ activeModal: null });
     };
 
+    const onInnerClick = (e: MouseEvent) => {
+        e.stopPropagation();
+    };
+
+    useScrollblock(activeModal !== null);
+
     return (
-        <div className={styles.wrapper} onClick={modalClick}>
-            <div className={styles.inner} ref={ref}>
+        <div className={styles.wrapper} onClick={modalClose}>
+            <div className={styles.inner} onClick={onInnerClick}>
                 {children}
             </div>
         </div>

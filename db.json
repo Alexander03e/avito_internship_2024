@@ -1,14 +1,11 @@
 {
   "advertisements": [
     {
-      "id": "1",
-      "name": "Стул старинный",
+      "price": 2000233,
       "description": "Очень красивый",
-      "price": 2000,
-      "createdAt": "2022-08-12T20:16:55.351Z",
-      "views": 20,
-      "likes": 2,
-      "imageUrl": ""
+      "imageUrl": "",
+      "name": "Стул ",
+      "id": "1"
     },
     {
       "id": "2",
@@ -98,6 +95,34 @@
       "views": 200,
       "likes": 300,
       "imageUrl": ""
+    },
+    {
+      "price": 3000,
+      "description": "Последняя возможность купить по выгодной цене!",
+      "imageUrl": "",
+      "name": "Ведро снега222",
+      "id": "3BNFABM"
+    },
+    {
+      "price": 0,
+      "description": "",
+      "imageUrl": "",
+      "name": "2323",
+      "id": "Gn4yoA_"
+    },
+    {
+      "price": 0,
+      "description": "",
+      "imageUrl": "",
+      "name": "2",
+      "id": "tjh_9kv"
+    },
+    {
+      "price": 0,
+      "description": "43434",
+      "imageUrl": "",
+      "name": "2332",
+      "id": "JXmstts"
     }
   ],
   "orders": [

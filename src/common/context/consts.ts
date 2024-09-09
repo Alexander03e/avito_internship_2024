@@ -4,5 +4,6 @@ export const initialState: IAppState = {
     activeModal: null,
     searchAdValue: null,
     currentAdPage: 0,
-    currentAdLimit: 10
+    currentAdLimit: 10,
+    adData: null
 };

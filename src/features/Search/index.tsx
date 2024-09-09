@@ -2,7 +2,7 @@ import { Button, SearchInput } from 'common/components/ui';
 import { useAppContext } from 'common/context/hooks';
 import { LocalStorage } from 'common/utils/storage';
 import debounce from 'lodash/debounce';
-import { ChangeEventHandler, MouseEvent, RefObject, useCallback, useRef, useState } from 'react';
+import { ChangeEventHandler, RefObject, useCallback, useRef, useState } from 'react';
 import { SEARCH_PLACEHOLDER } from 'widgets/AdvertisementList/consts';
 import styles from './search.module.scss';
 import { useFocused } from 'common/hooks/useFocused';
@@ -21,8 +21,10 @@ export const Search = () => {
     const { updateAppState } = useAppContext();
 
     const handleRequest = (value: string) => {
-        updateAppState({ searchAdValue: value });
-        storage.add('search', value);
+        const clearedValue = value.trim();
+
+        updateAppState({ searchAdValue: clearedValue });
+        storage.add('search', clearedValue);
     };
 
     const handleRequestHistory = (value: string) => {
@@ -30,11 +32,10 @@ export const Search = () => {
         handleRequest(value);
     };
 
-    const debounceFn = useCallback(debounce(handleRequest, 1000), []);
+    const debounceFn = useCallback(debounce(handleRequest, 500), []);
 
     const onChange: ChangeEventHandler<HTMLInputElement> = e => {
         const { value } = e.target;
-
         setValue(value);
         debounceFn(value);
     };

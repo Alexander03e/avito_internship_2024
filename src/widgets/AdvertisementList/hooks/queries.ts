@@ -1,5 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query"
 import { AdvertisementsApi } from "common/api/advertisements/api"
+import { KEYS } from "common/consts/queries";
 import { Advertisment } from "common/types/advertisement"
 
 type Props = {
@@ -13,7 +14,7 @@ const api = AdvertisementsApi.getInstance()
 export const useAllAdvertisement = ({searchQuery, start = 0, limit = 10}: Props): UseQueryResult<Advertisment[]> => {
     
     return useQuery({
-        queryKey: ['adsList', searchQuery, start, limit],
+        queryKey: [KEYS.ADS, searchQuery, start, limit],
         queryFn: () => {
             const params = new URLSearchParams({
                 _start: start.toString(),

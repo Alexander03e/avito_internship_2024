@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    gap: 22px;
+    height: 350px;
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        .price {
+            color: var(--primary-text-color);
+        }
+
+        .createdAt {
+            color: var(--secondary-text-color);
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 30px;
+        }
+
+        & > button {
+            width: fit-content;
+            margin-top: auto;
+        }
+    }
+}

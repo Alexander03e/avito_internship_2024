@@ -7,6 +7,7 @@ import EyeIcon from 'assets/icons/eye.svg?react';
 import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
 import { PATHS } from 'common/consts/paths';
+import { Image } from 'common/components/ui/Image';
 
 type Props = Advertisment & {
     isShortened?: boolean;
@@ -21,7 +22,6 @@ export const Card = ({
     imageUrl,
     isShortened = false,
 }: Props): ReactElement => {
-    const image = Boolean(imageUrl) ? imageUrl : 'src/assets/images/fake_img.png';
     const priceLabel = price ? `${price + ' ₽'}` : 'Цена не указана';
     const navigate = useNavigate();
 
@@ -31,12 +31,7 @@ export const Card = ({
 
     return (
         <div className={cn(styles.card, { [styles.shortened]: isShortened })}>
-            <div
-                onClick={redirectToDetails}
-                className={cn(styles.imgWrapper, { [styles.fakeImg]: !Boolean(imageUrl) })}
-            >
-                <img src={image} />
-            </div>
+            <Image imageUrl={imageUrl} onClick={redirectToDetails} />
 
             <div className={styles.cardInfo}>
                 <div className={styles.top}>
