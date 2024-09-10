@@ -4,16 +4,16 @@ import { Button } from 'common/components/ui';
 import { ELEMENTS_COUNT, PAGINATION_OPTIONS } from './consts';
 import map from 'lodash/map';
 import { useAppContext } from 'common/context/hooks';
+import { useAdStateSelector } from 'common/context/selectors';
 
 type Props = {
     hasNextPage?: boolean;
 };
 
 export const Pagination = ({ hasNextPage }: Props) => {
-    const {
-        updateAppState,
-        state: { currentLimit, currentPage },
-    } = useAppContext();
+    const { updateAdState } = useAppContext();
+
+    const { currentLimit, currentPage } = useAdStateSelector();
 
     const prevBlock = currentPage === 0;
 
@@ -22,18 +22,18 @@ export const Pagination = ({ hasNextPage }: Props) => {
     const nextPage = () => {
         if (nextBlock) return;
 
-        updateAppState({ currentPage: currentPage + 1 });
+        updateAdState({ currentPage: currentPage + 1 });
     };
 
     const prevPage = () => {
         if (prevBlock) return;
-        updateAppState({ currentPage: currentPage - 1 });
+        updateAdState({ currentPage: currentPage - 1 });
     };
 
     const handleItemsPerPageChange: ChangeEventHandler<HTMLSelectElement> = event => {
         const { value } = event.target;
 
-        updateAppState({ currentLimit: +value, currentPage: 0 });
+        updateAdState({ currentLimit: +value, currentPage: 0 });
     };
 
     return (

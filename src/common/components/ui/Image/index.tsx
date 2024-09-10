@@ -6,9 +6,10 @@ type Props = {
     imageUrl?: string;
     onClick?: () => void;
     size?: 'small' | 'large';
+    className?: string;
 };
 
-export const Image = ({ imageUrl, onClick, size = 'small' }: Props): ReactElement => {
+export const Image = ({ imageUrl, onClick, className, size = 'small' }: Props): ReactElement => {
     const image = Boolean(imageUrl) ? imageUrl : '/src/assets/images/fake_img.png';
 
     const handleClick = () => {
@@ -20,7 +21,7 @@ export const Image = ({ imageUrl, onClick, size = 'small' }: Props): ReactElemen
     return (
         <div
             onClick={handleClick}
-            className={cn(styles.imgWrapper, styles[size], {
+            className={cn(styles.imgWrapper, styles[size], className, {
                 [styles.fakeImg]: !Boolean(imageUrl),
                 [styles.clickable]: onClick,
             })}

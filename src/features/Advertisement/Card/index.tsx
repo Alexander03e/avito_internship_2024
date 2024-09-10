@@ -8,6 +8,7 @@ import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
 import { PATHS } from 'common/consts/paths';
 import { Image } from 'common/components/ui/Image';
+import { useAppContext } from 'common/context/hooks';
 
 type Props = Advertisment & {
     isShortened?: boolean;
@@ -22,16 +23,18 @@ export const Card = ({
     imageUrl,
     isShortened = false,
 }: Props): ReactElement => {
+    const { updateAppState } = useAppContext();
     const priceLabel = price ? `${price + ' ₽'}` : 'Цена не указана';
     const navigate = useNavigate();
 
     const redirectToDetails = () => {
         navigate(`${PATHS.ADVERTISEMENTS}/${id}`);
+        updateAppState({ activeModal: null });
     };
 
     return (
         <div className={cn(styles.card, { [styles.shortened]: isShortened })}>
-            <Image imageUrl={imageUrl} onClick={redirectToDetails} />
+            <Image className={styles.img} imageUrl={imageUrl} onClick={redirectToDetails} />
 
             <div className={styles.cardInfo}>
                 <div className={styles.top}>

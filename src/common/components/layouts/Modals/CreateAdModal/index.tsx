@@ -17,7 +17,7 @@ export const CreateAdModal = (): ReactElement => {
 
     const {
         updateAppState,
-        state: { adData, activeModal },
+        state: { ad: {adData}, activeModal },
     } = useAppContext();
 
     const { mutateAsync: createAd } = useCreateAd();

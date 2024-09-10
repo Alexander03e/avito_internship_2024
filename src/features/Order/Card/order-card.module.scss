@@ -1,0 +1,32 @@
+.wrapper {
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        width: fit-content;
+        margin-bottom: 4px;
+        padding-bottom: 8px;
+
+        border-bottom: 1px solid black;
+        .id {
+            padding: 2px 4px;
+            color: white;
+            background-color: var(--primary-text-color);
+        }
+
+        .status {
+            padding: 2px 4px;
+            color: white;
+            background-color: var(--secondary-special-color);
+        }
+
+        & > p {
+            padding-block: 4px;
+        }
+
+        & > button {
+            align-self: flex-start;
+        }
+    }
+}

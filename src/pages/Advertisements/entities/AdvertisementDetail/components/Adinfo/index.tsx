@@ -2,17 +2,18 @@ import { Image } from 'common/components/ui/Image';
 import styles from './ad-info.module.scss';
 import { Button, TextWithIcon } from 'common/components/ui';
 import { useAppContext } from 'common/context/hooks';
-import { useRemoveAdvertisement } from 'pages/AdvertisementDetail/hooks/queries';
+import { useRemoveAdvertisement } from '../../hooks/queries';
 import { formatDate } from 'common/utils/formateDate';
 import HeartIcon from 'assets/icons/heart.svg?react';
 import EyeIcon from 'assets/icons/eye.svg?react';
 import cn from 'classnames';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 export const AdInfo = () => {
     const {
         updateAppState,
-        state: { adData: data },
+        state: {
+            ad: { adData: data },
+        },
     } = useAppContext();
 
     const { mutate, isSuccess } = useRemoveAdvertisement();
@@ -43,7 +44,6 @@ export const AdInfo = () => {
                         onClick={removeAdHandler}
                     />
                 </div>
-                <ReactQueryDevtools />
             </div>
 
             <div className={styles.info}>

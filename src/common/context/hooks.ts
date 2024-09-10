@@ -1,5 +1,5 @@
-import { createContext, useContext } from "react";
-import { IAppContext } from "./types";
+import { createContext, useContext } from 'react';
+import { IAppContext } from './types';
 
 export const AppContext = createContext<IAppContext | undefined>(undefined);
 
@@ -8,8 +8,9 @@ export const useAppContext = (): IAppContext => {
     const context = useContext(AppContext);
 
     if (!context) {
-        throw new Error("useAppContext должен быть в AppContextProvider!");
+        throw new Error('useAppContext должен быть в AppContextProvider!');
     }
 
     return context;
 };
+

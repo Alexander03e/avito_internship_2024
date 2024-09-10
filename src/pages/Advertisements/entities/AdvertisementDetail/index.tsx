@@ -5,19 +5,19 @@ import { Loader } from 'common/components/ui/Loader';
 import { AdError, AdInfo } from './components';
 import { useParams } from 'react-router-dom';
 
-export const AdvertisementDetail = (): ReactElement => {
+export const AdvertisementDetailPage = (): ReactElement => {
     const { id } = useParams();
 
-    const { updateAppState } = useAppContext();
+    const { updateAdState } = useAppContext();
 
     const { data, isError, isLoading } = useAdvertisement(String(id));
 
     useEffect(() => {
         if (!data) return;
-        updateAppState({ adData: data });
+        updateAdState({ adData: data });
 
         return () => {
-            updateAppState({ adData: null, currentPage: 0 });
+            updateAdState({ adData: null, currentPage: 0 });
         };
     }, [data]);
 

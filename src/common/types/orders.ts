@@ -1,6 +1,6 @@
 import { Advertisment } from "./advertisement";
 
-const OrderStatus = {
+export const OrderStatus = {
     Created: 0,
     Paid: 1,
     Transport: 2,

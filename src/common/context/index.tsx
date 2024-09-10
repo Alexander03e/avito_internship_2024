@@ -11,10 +11,21 @@ export const AppContextProvider = ({ children }: PropsWithChildren): ReactElemen
         setAppState({ ...appState, ...newAppData });
     };
 
+    /** Обновление стейта объявлений */
+    const updateAdState = (newAdState: Partial<IAppState['ad']>): void => {
+        setAppState({...appState, ad: {...appState.ad, ...newAdState}})
+    }
+
+    const updateOrderState = (newAdState: Partial<IAppState['order']>): void => {
+        setAppState({...appState, order: {...appState.order, ...newAdState}})
+    }
+
     /** Мемоизированное состояние */
     const memorizedData = useMemo(
         (): IAppContext => ({
             state: appState,
+            updateOrderState,
+            updateAdState,
             updateAppState,
         }),
         [appState],

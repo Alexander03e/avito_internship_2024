@@ -1,0 +1,1 @@
+export { AdvertisementDetailPage } from './AdvertisementDetail'

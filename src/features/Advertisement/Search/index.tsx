@@ -3,7 +3,7 @@ import { useAppContext } from 'common/context/hooks';
 import { LocalStorage } from 'common/utils/storage';
 import debounce from 'lodash/debounce';
 import { ChangeEventHandler, RefObject, useCallback, useRef, useState } from 'react';
-import { SEARCH_PLACEHOLDER } from 'widgets/AdvertisementList/consts';
+import { SEARCH_PLACEHOLDER } from 'widgets/Advertisement/AdvertisementList/consts';
 import styles from './search.module.scss';
 import { useFocused } from 'common/hooks/useFocused';
 import map from 'lodash/map';
@@ -18,12 +18,12 @@ export const Search = () => {
     const historyRef = useRef(null);
 
     const [value, setValue] = useState('');
-    const { updateAppState } = useAppContext();
+    const { updateAdState } = useAppContext();
 
     const handleRequest = (value: string) => {
         const clearedValue = value.trim();
 
-        updateAppState({ searchAdValue: clearedValue });
+        updateAdState({ searchAdValue: clearedValue });
         storage.add('search', clearedValue);
     };
 

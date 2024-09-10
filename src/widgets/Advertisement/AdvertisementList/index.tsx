@@ -5,19 +5,16 @@ import map from 'lodash/map';
 import { Card, Pagination } from 'features/index';
 import { EMPTY, EMPTY_SEARCH, ERROR } from './consts';
 import cn from 'classnames';
-import { useAppContext } from 'common/context/hooks';
 import size from 'lodash/size';
 import { Loader } from 'common/components/ui/Loader';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useAdStateSelector } from 'common/context/selectors';
 
 type Props = {
     className?: string;
 };
 
 export const AdvertisementsList = ({ className }: Props): ReactElement => {
-    const {
-        state: { searchAdValue, currentLimit, currentPage },
-    } = useAppContext();
+    const { searchAdValue, currentLimit, currentPage } = useAdStateSelector();
 
     const { data, isLoading, isError, hasNextPage } = useAllAdvertisement({
         searchQuery: searchAdValue,
@@ -29,7 +26,7 @@ export const AdvertisementsList = ({ className }: Props): ReactElement => {
 
     if (isLoading) return <Loader />;
 
-    if (size(data) === 0)
+    if (size(data) === 0 && searchAdValue)
         return (
             <span>
                 {EMPTY_SEARCH} <strong>{searchAdValue}</strong>

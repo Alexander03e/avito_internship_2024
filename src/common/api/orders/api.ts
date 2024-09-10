@@ -3,23 +3,23 @@ import { AxiosInstance } from "axios"
 import { ORDERS_URL } from './consts';
 import { Order, TOrderData } from "common/types/orders";
 
-export class AdvertisementsApi {
-    private static _instance: AdvertisementsApi | null = null
+export class OrderApi {
+    private static _instance: OrderApi | null = null
     private _httpInstance: AxiosInstance
 
     constructor() {
         this._httpInstance = HttpInstanceFactory.getInstance()
     }
 
-    public static getInstance(): AdvertisementsApi {
+    public static getInstance(): OrderApi {
         if (this._instance) return this._instance;
 
-        this._instance = new AdvertisementsApi();
+        this._instance = new OrderApi();
         return this._instance;
     }
 
-    public async getAll(): Promise<Order[]> {
-        return (await this._httpInstance.get(`${ORDERS_URL}`)).data
+    public async getAll(params: string): Promise<Order[]> {
+        return (await this._httpInstance.get(`${ORDERS_URL}?${params}`)).data
     }
 
     public async get(id: number): Promise<Order> {

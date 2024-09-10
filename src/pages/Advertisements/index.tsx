@@ -1,9 +1,10 @@
 import { Search } from 'features/Advertisement/Search';
 import { ReactElement } from 'react';
-import { AdvertisementsList } from 'widgets/AdvertisementList';
+import { AdvertisementsList } from 'widgets/Advertisement';
 import styles from './advertisement-page.module.scss';
+import { AdvertisementDetailPage } from 'pages/Advertisements/entities/AdvertisementDetail';
 
-export const AdvertisementsPage = (): ReactElement => {
+const AdvertisementsPage = (): ReactElement => {
     return (
         <div className={styles.wrapper}>
             <Search />
@@ -11,3 +12,8 @@ export const AdvertisementsPage = (): ReactElement => {
         </div>
     );
 };
+
+export {
+    AdvertisementsPage,
+    AdvertisementDetailPage
+}
