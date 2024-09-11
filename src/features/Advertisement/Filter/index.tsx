@@ -5,23 +5,12 @@ import { IFilterState } from './ad-filter.types';
 import { Button } from 'common/components/ui';
 import { LabeledInput } from 'common/components/ui/LabeledInput';
 import { useAppContext } from 'common/context/hooks';
+import { inputConfigFrom, inputConfigTo } from './consts';
 
 export const AdFilter = (): ReactElement => {
     const { register, handleSubmit, watch } = useForm<IFilterState>();
     
     const { updateAdState } = useAppContext()
-
-    const inputConfigFrom = {
-        placeholder: 'от',
-        type: 'number',
-        label: 'от',
-    };
-
-    const inputConfigTo = {
-        placeholder: 'до',
-        type: 'number',
-        label: 'до',
-    };
 
     const likesGte = watch('likesGte')
     const priceGte = watch('priceGte')
