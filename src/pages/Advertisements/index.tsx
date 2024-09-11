@@ -6,6 +6,7 @@ import { AdvertisementDetailPage } from 'pages/Advertisements/entities/Advertise
 import { AdFilter } from 'features/Advertisement/Filter';
 
 const AdvertisementsPage = (): ReactElement => {
+    
     return (
         <div className={styles.wrapper}>
             <Search />

@@ -3,6 +3,8 @@ import { IAppState } from './types';
 export const initialState: IAppState = {
     activeModal: null,
     modalData: null,
+    openFilters: false,
+
     ad: {
         searchAdValue: null,
         currentPage: 0,
@@ -25,6 +27,7 @@ export const initialState: IAppState = {
     },
 
     order: {
+        adId: null,
         currentFilter: null,
         currentPriceSort: null,
     },

@@ -1,7 +1,7 @@
 import { PageLayout } from 'common/components/layouts/PageLayout';
 import { PATHS } from 'common/consts/paths';
 import { AdvertisementsPage, AdvertisementDetailPage } from 'pages/Advertisements';
-import { OrdersPage, OrderDetailPage } from 'pages/Orders';
+import { OrdersPage } from 'pages/Orders';
 import { createBrowserRouter, createRoutesFromElements, Navigate, Route } from 'react-router-dom';
 
 export const router = createBrowserRouter(
@@ -17,9 +17,8 @@ export const router = createBrowserRouter(
 
             <Route path={PATHS.ORDERS}>
                 <Route element={<OrdersPage />} index />
-                <Route element={<OrderDetailPage />} path=':id' />
             </Route>
 
-        </Route>,
+        </Route>
     ),
 );

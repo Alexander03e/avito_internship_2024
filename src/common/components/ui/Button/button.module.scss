@@ -13,6 +13,10 @@
         opacity: 0.5;
     }
 
+    &:not(:disabled):active {
+        filter: brightness(1.2);
+    }
+
     &.empty {
         padding: 2px;
         color: var(--primary-text-color);

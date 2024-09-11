@@ -10,15 +10,17 @@ import map from 'lodash/map';
 import slice from 'lodash/slice';
 import size from 'lodash/size';
 import { CLEAR_HISTORY, HISTORY } from './consts';
+import { useAdStateSelector } from 'common/context/selectors';
 
 const storage = LocalStorage.getInstance();
 
 export const Search = () => {
     const [isFocus, inputRef] = useFocused();
     const historyRef = useRef(null);
-
-    const [value, setValue] = useState('');
+    const { searchAdValue } = useAdStateSelector()
     const { updateAdState } = useAppContext();
+    
+    const [value, setValue] = useState(searchAdValue);
 
     const handleRequest = (value: string) => {
         const clearedValue = value.trim();

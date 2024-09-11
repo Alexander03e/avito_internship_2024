@@ -2,6 +2,12 @@
     display: flex;
     gap: 16px;
     align-items: flex-end;
+
+    padding: 8px;
+
+    background-color: rgb(236, 236, 236);
+    border-radius: var(--radius-x1);
+
     & > button {
         height: fit-content;
     }
@@ -12,8 +18,9 @@
         gap: 4px;
 
         & > span {
+            display: block;
+            padding: 4px;
             color: var(--primary-text-color);
-            text-decoration: underline;
         }
 
         & > fieldset {
@@ -24,12 +31,10 @@
             padding-inline: 0; 
 
             border: none;
-            
-            & > input { 
-                padding: 4px;
-                border: 1px solid black;
-                border-radius: var(--radius-x1);
-            }
         }
     }
+}
+
+.toggleBtn {
+    width: fit-content;
 }

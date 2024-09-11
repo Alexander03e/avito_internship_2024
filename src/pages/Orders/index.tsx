@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
-import { OrderDetailPage } from 'pages/Orders/entities/OrderDetail';
-import { OrdersList } from 'widgets/Orders/OrdersList';
+import { OrdersList } from 'widgets/Orders';
 import styles from './orders-page.module.scss'
 
 const OrdersPage = (): ReactElement => {
@@ -12,5 +11,4 @@ const OrdersPage = (): ReactElement => {
 
 export {
     OrdersPage,
-    OrderDetailPage
 }

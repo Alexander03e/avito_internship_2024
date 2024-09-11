@@ -5,6 +5,7 @@ import { Filters } from 'common/types/filters';
 export interface IAppState {
     activeModal: TAppModals | null;
     modalData: unknown | null;
+    openFilters: boolean;
 
     ad: {
         adData: Partial<Advertisment> | null;
@@ -15,6 +16,7 @@ export interface IAppState {
     };
 
     order: {
+        adId: string | null;
         currentFilter: string | null;
         currentPriceSort: string | null;
     };

@@ -23,7 +23,7 @@ export const Card = ({
     imageUrl,
     isShortened = false,
 }: Props): ReactElement => {
-    const { updateAppState } = useAppContext();
+    const { updateAppState, updateOrderState } = useAppContext();
     const priceLabel = price ? `${price + ' ₽'}` : 'Цена не указана';
     const navigate = useNavigate();
 
@@ -31,6 +31,12 @@ export const Card = ({
         navigate(`${PATHS.ADVERTISEMENTS}/${id}`);
         updateAppState({ activeModal: null });
     };
+
+    const goToOrdersHandler = () => {
+        navigate(`${PATHS.ORDERS}`)
+
+        updateOrderState({adId: id})
+    }
 
     return (
         <div className={cn(styles.card, { [styles.shortened]: isShortened })}>
@@ -49,6 +55,7 @@ export const Card = ({
                 <div className={styles.details}>
                     <TextWithIcon icon={<EyeIcon />} text={views ?? 0} />
                     <TextWithIcon icon={<HeartIcon />} text={likes ?? 0} />
+                    {!isShortened && <Button onClick={goToOrdersHandler} variant='empty' label='Посмотреть заказы' />}
                 </div>
             </div>
         </div>

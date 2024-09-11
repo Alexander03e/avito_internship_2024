@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import styles from './ad-filter.module.scss';
 import { useForm } from 'react-hook-form';
 import { IFilterState } from './ad-filter.types';
@@ -6,68 +6,116 @@ import { Button } from 'common/components/ui';
 import { LabeledInput } from 'common/components/ui/LabeledInput';
 import { useAppContext } from 'common/context/hooks';
 import { inputConfigFrom, inputConfigTo } from './consts';
+import { useAdStateSelector } from 'common/context/selectors';
 
 export const AdFilter = (): ReactElement => {
-    const { register, handleSubmit, watch } = useForm<IFilterState>();
-    
-    const { updateAdState } = useAppContext()
+    const {
+        updateAdState,
+        updateAppState,
+        state: { openFilters },
+    } = useAppContext();
+    const { currentFilter } = useAdStateSelector();
+    const { register, handleSubmit, watch } = useForm<IFilterState>({
+        defaultValues: {
+            likesGte: currentFilter?.likes.from ?? undefined,
+            likesLte: currentFilter?.likes.to ?? undefined,
+            viewsGte: currentFilter?.views.from ?? undefined,
+            viewsLte: currentFilter?.views.to ?? undefined,
+            priceGte: currentFilter?.price.from ?? undefined,
+            priceLte: currentFilter?.price.to ?? undefined,
+        },
+    });
 
-    const likesGte = watch('likesGte')
-    const priceGte = watch('priceGte')
-    const viewsGte = watch('viewsGte')
+    const likesGte = watch('likesGte');
+    const priceGte = watch('priceGte');
+    const viewsGte = watch('viewsGte');
 
     const handleSubmitForm = (data: IFilterState) => {
-        const { likesGte, likesLte, priceGte, priceLte, viewsGte, viewsLte} = data
+        const { likesGte, likesLte, priceGte, priceLte, viewsGte, viewsLte } = data;
 
         const likes = {
             from: likesGte,
-            to: likesLte
-        }
+            to: likesLte,
+        };
         const price = {
             from: priceGte,
-            to: priceLte
-        }
+            to: priceLte,
+        };
         const views = {
             from: viewsGte,
-            to: viewsLte
-        }
-        
-        updateAdState({currentFilter: { likes, price, views }})
-    }
+            to: viewsLte,
+        };
+
+        updateAdState({ currentFilter: { likes, price, views } });
+    };
+
+    const visibleFiltersHandler = () => {
+        updateAppState({openFilters: !openFilters})
+    };
+
+    if (!openFilters)
+        return (
+            <Button
+                className={styles.toggleBtn}
+                variant='empty'
+                onClick={visibleFiltersHandler}
+                label='Показать фильтры'
+            />
+        );
 
     return (
-        <form className={styles.wrapper} onSubmit={handleSubmit(handleSubmitForm)}>
-            <label>
-                <span>Количество лайков</span>
-                <fieldset>
-                    <LabeledInput
-                        {...inputConfigFrom}
-                        registerInput={{ ...register('likesGte') }}
-                    />
-                    <LabeledInput min={likesGte} {...inputConfigTo} registerInput={{ ...register('likesLte') }} />
-                </fieldset>
-            </label>
-            <label>
-                <span>Цена</span>
-                <fieldset>
-                    <LabeledInput
-                        {...inputConfigFrom}
-                        registerInput={{ ...register('priceGte') }}
-                    />
-                    <LabeledInput min={priceGte} {...inputConfigTo} registerInput={{ ...register('priceLte') }} />
-                </fieldset>
-            </label>
-            <label>
-                <span>Просмотры</span>
-                <fieldset>
-                    <LabeledInput
-                        {...inputConfigFrom}
-                        registerInput={{ ...register('viewsGte') }}
-                    />
-                    <LabeledInput min={viewsGte} {...inputConfigTo} registerInput={{ ...register('viewsLte') }} />
-                </fieldset>
-            </label>
-            <Button type='submit' label='Применить фильтры' />
-        </form>
+        <>
+            <Button
+                className={styles.toggleBtn}
+                variant='empty'
+                onClick={visibleFiltersHandler}
+                label='Скрыть фильтры'
+            />
+            <form className={styles.wrapper} onSubmit={handleSubmit(handleSubmitForm)}>
+                <label>
+                    <span>Количество лайков</span>
+                    <fieldset>
+                        <LabeledInput
+                            {...inputConfigFrom}
+                            registerInput={{ ...register('likesGte') }}
+                        />
+                        <LabeledInput
+                            min={likesGte}
+                            {...inputConfigTo}
+                            registerInput={{ ...register('likesLte') }}
+                        />
+                    </fieldset>
+                </label>
+                <label>
+                    <span>Цена</span>
+                    <fieldset>
+                        <LabeledInput
+                            {...inputConfigFrom}
+                            registerInput={{ ...register('priceGte') }}
+                        />
+                        <LabeledInput
+                            min={priceGte}
+                            {...inputConfigTo}
+                            registerInput={{ ...register('priceLte') }}
+                        />
+                    </fieldset>
+                </label>
+                <label>
+                    <span>Просмотры</span>
+                    <fieldset>
+                        <LabeledInput
+                            {...inputConfigFrom}
+                            registerInput={{ ...register('viewsGte') }}
+                        />
+                        <LabeledInput
+                            min={viewsGte}
+                            {...inputConfigTo}
+                            registerInput={{ ...register('viewsLte') }}
+                        />
+                    </fieldset>
+                </label>
+                <Button type='submit' label='Применить фильтры' />
+            </form>
+        </>
     );
 };

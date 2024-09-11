@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement } from 'react';
 import styles from './advertisement-list.module.scss';
 import { useAllAdvertisement } from './hooks/queries';
 import map from 'lodash/map';
@@ -22,10 +22,6 @@ export const AdvertisementsList = ({ className }: Props): ReactElement => {
         start: currentPage * currentLimit,
         filters: currentFilter
     });
-
-    useEffect(() => {
-        console.log(currentFilter)
-    }, [currentFilter])
 
     if (isError) return <>{ERROR}</>;
 
