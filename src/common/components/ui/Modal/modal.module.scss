@@ -27,4 +27,14 @@
 
     background-color: white;
     border-radius: 18px;
+
+    .close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        transition: var(--transition);
+        &:hover {
+            color: var(--primary-text-color);
+        }
+    }
 }

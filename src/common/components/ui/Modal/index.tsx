@@ -26,6 +26,7 @@ export const Modal = ({ children }: Props): ReactElement => {
     return (
         <div className={styles.wrapper} onClick={modalClose}>
             <div className={styles.inner} onClick={onInnerClick}>
+                <button onClick={modalClose} className={styles.close}>Закрыть</button>
                 {children}
             </div>
         </div>

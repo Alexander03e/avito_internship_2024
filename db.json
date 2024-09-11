@@ -11,13 +11,11 @@
       "imageUrl": ""
     },
     {
-      "id": "3",
-      "name": "Плащ невидимка",
       "price": 10000000,
-      "createdAt": "2024-08-12T20:16:55.351Z",
-      "views": 900,
-      "likes": 19,
-      "imageUrl": ""
+      "description": "",
+      "imageUrl": "",
+      "name": "Плащ невидимка2",
+      "id": "3"
     },
     {
       "id": "4",

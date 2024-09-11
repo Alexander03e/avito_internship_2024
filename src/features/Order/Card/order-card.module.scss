@@ -1,4 +1,12 @@
 .wrapper {
+    
+    .tags {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        width: 320px;
+    }
+    
     .info {
         display: flex;
         flex-direction: column;
@@ -6,9 +14,12 @@
 
         width: fit-content;
         margin-bottom: 4px;
+        padding: 12px;
         padding-bottom: 8px;
 
+        background-color: rgb(234, 234, 234);
         border-bottom: 1px solid black;
+        
         .id {
             padding: 2px 4px;
             color: white;

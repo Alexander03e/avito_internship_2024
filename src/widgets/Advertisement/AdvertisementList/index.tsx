@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import styles from './advertisement-list.module.scss';
 import { useAllAdvertisement } from './hooks/queries';
 import map from 'lodash/map';
@@ -14,13 +14,18 @@ type Props = {
 };
 
 export const AdvertisementsList = ({ className }: Props): ReactElement => {
-    const { searchAdValue, currentLimit, currentPage } = useAdStateSelector();
+    const { searchAdValue, currentLimit, currentPage, currentFilter } = useAdStateSelector();
 
     const { data, isLoading, isError, hasNextPage } = useAllAdvertisement({
         searchQuery: searchAdValue,
         limit: currentLimit,
         start: currentPage * currentLimit,
+        filters: currentFilter
     });
+
+    useEffect(() => {
+        console.log(currentFilter)
+    }, [currentFilter])
 
     if (isError) return <>{ERROR}</>;
 

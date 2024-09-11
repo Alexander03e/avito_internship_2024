@@ -18,7 +18,6 @@ export const OrderCard = ({
     total,
     finishedAt,
 }: Props): ReactElement => {
-
     const formattedDate = formatDate(createdAt);
     const formattedFinish = formatDate(finishedAt);
 
@@ -31,8 +30,10 @@ export const OrderCard = ({
     return (
         <div className={styles.wrapper}>
             <div className={styles.info}>
-                <h4 className={styles.status}>Статус: {getOrderStatus(status)}</h4>
-                <h4 className={styles.id}>Номер заказа: {id}</h4>
+                <div className={styles.tags}>
+                    <h4 className={styles.id}>Номер заказа: {id}</h4>
+                    <h4 className={styles.status}>Статус: {getOrderStatus(status)}</h4>
+                </div>
                 <span>
                     {TEXTS.CREATED} <strong>{formattedDate}</strong>
                 </span>

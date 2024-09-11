@@ -16,6 +16,7 @@ export const AllAdsModal = (): ReactElement => {
     return (
         <Modal>
             <div className={styles.wrapper}>
+                <h3>Товары в заказе</h3>
                 {map(currentModalData, item => (
                     <Card isShortened {...item} />
                 ))}

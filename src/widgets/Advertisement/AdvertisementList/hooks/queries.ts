@@ -2,17 +2,24 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { AdvertisementsApi } from 'common/api/advertisements/api';
 import { KEYS } from 'common/consts/queries';
 import { Advertisment } from 'common/types/advertisement';
+import { Filters } from 'common/types/filters';
 import { useEffect, useState } from 'react';
 
 type Props = {
     searchQuery?: string | null;
     start?: number;
     limit?: number;
+    filters: Filters | null;
 };
 
 const api = AdvertisementsApi.getInstance();
 
-export const useAllAdvertisement = ({ searchQuery, start = 0, limit = 10 }: Props) => {
+export const useAllAdvertisement = ({
+    searchQuery,
+    start = 0,
+    limit = 10,
+    filters = null,
+}: Props) => {
     const [hasNextPage, setHasNextPage] = useState(false);
     const queryClient = useQueryClient();
     const nextStart = start + limit;
@@ -24,8 +31,25 @@ export const useAllAdvertisement = ({ searchQuery, start = 0, limit = 10 }: Prop
 
     if (searchQuery) params.append('name_like', searchQuery);
 
+    if (filters) {
+        const { likes, price, views } = filters;
+
+        if (likes) {
+            likes.from && params.append('likes_gte', likes.from);
+            likes.to && params.append('likes_lte', likes.to);
+        }
+        if (price) {
+            price.from && params.append('price_gte', price.from);
+            price.to && params.append('price_lte', price.to);
+        }
+        if (views) {
+            views.from && params.append('views_gte', views.from);
+            views.to && params.append('views_lte', views.to);
+        }
+    }
+
     const query = useQuery({
-        queryKey: [KEYS.ADS, searchQuery, start, limit],
+        queryKey: [KEYS.ADS, searchQuery, start, limit, filters],
         queryFn: () => {
             params.append('_start', start.toString());
             return api.getAll(params.toString());
@@ -42,7 +66,7 @@ export const useAllAdvertisement = ({ searchQuery, start = 0, limit = 10 }: Prop
                 },
             })
             .then(() => setPrefetched(true));
-    }, [searchQuery, queryClient, limit, start]);
+    }, [searchQuery, queryClient, limit, start, filters]);
 
     useEffect(() => {
         if (prefetched) {

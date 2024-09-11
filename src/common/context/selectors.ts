@@ -14,5 +14,5 @@ export const useOrderStateSelector = (): IAppContext['state']['order'] => {
         state: { order },
     } = useAppContext();
 
-    return order
+    return order;
 };

@@ -1,0 +1,35 @@
+.wrapper {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    & > button {
+        height: fit-content;
+    }
+
+    & > label {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        & > span {
+            color: var(--primary-text-color);
+            text-decoration: underline;
+        }
+
+        & > fieldset {
+            display: flex;
+            gap: 4px;
+
+            padding-bottom: 0;
+            padding-inline: 0; 
+
+            border: none;
+            
+            & > input { 
+                padding: 4px;
+                border: 1px solid black;
+                border-radius: var(--radius-x1);
+            }
+        }
+    }
+}
