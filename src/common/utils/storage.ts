@@ -39,7 +39,7 @@ export class LocalStorage {
         const prevValues = localStorage.getItem(key);
 
         if (prevValues) {
-            let arrValues = JSON.parse(prevValues);
+            const arrValues = JSON.parse(prevValues);
             const index = arrValues.indexOf(value);
 
             if (index !== -1) {

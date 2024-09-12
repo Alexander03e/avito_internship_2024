@@ -6,7 +6,7 @@ import HeartIcon from 'assets/icons/heart.svg?react';
 import EyeIcon from 'assets/icons/eye.svg?react';
 import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
-import { PATHS } from 'common/consts/paths';
+import { PATHS, QUERY_PARAMS } from 'common/consts/paths';
 import { Image } from 'common/components/ui/Image';
 import { useAppContext } from 'common/context/hooks';
 
@@ -23,7 +23,7 @@ export const Card = ({
     imageUrl,
     isShortened = false,
 }: Props): ReactElement => {
-    const { updateAppState, updateOrderState } = useAppContext();
+    const { updateAppState } = useAppContext();
     const priceLabel = price ? `${price + ' ₽'}` : 'Цена не указана';
     const navigate = useNavigate();
 
@@ -33,9 +33,7 @@ export const Card = ({
     };
 
     const goToOrdersHandler = () => {
-        navigate(`${PATHS.ORDERS}`)
-
-        updateOrderState({adId: id})
+        navigate(`${PATHS.ORDERS}?${QUERY_PARAMS.AD_ID}=${id}`)
     }
 
     return (

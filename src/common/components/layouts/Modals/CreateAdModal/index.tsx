@@ -63,6 +63,7 @@ export const CreateAdModal = (): ReactElement => {
             reset();
         } catch (e) {
             setIsError(true);
+            throw new Error(`Submit failed, ${e}`)
         } finally {
             setIsLoading(false);
         }

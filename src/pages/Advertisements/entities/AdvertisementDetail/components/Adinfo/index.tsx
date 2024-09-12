@@ -7,6 +7,7 @@ import { formatDate } from 'common/utils/formateDate';
 import HeartIcon from 'assets/icons/heart.svg?react';
 import EyeIcon from 'assets/icons/eye.svg?react';
 import cn from 'classnames';
+import { TEXTS } from './consts';
 
 export const AdInfo = () => {
     const {
@@ -27,6 +28,7 @@ export const AdInfo = () => {
     const removeAdHandler = () => {
         mutate(String(data?.id));
     };
+
     return (
         <div className={cn(styles.wrapper, { [styles.deleted]: isSuccess })}>
             <div className={styles.image}>
@@ -35,12 +37,12 @@ export const AdInfo = () => {
                     <Button
                         onClick={editButtonHandler}
                         disabled={isSuccess}
-                        label='Редактировать'
+                        label={TEXTS.EDIT}
                     />
                     <Button
                         disabled={isSuccess}
                         variant='warn'
-                        label='Удалить объявление'
+                        label={TEXTS.REMOVE}
                         onClick={removeAdHandler}
                     />
                 </div>
@@ -48,16 +50,16 @@ export const AdInfo = () => {
 
             <div className={styles.info}>
                 {isSuccess && <h2>Объявление удалено</h2>}
-                <h2 className={styles.name}>{data?.name ?? 'Без названия'}</h2>
+                <h2 className={styles.name}>{data?.name ?? TEXTS.NO_NAME}</h2>
                 <h2 className={styles.price}>
-                    {!data?.price ? 'Цена не указана' : `${data?.price} ₽`}
+                    {!data?.price ? TEXTS.NO_PRICE : `${data?.price} ₽`}
                 </h2>
                 {data?.description && <p>{data?.description}</p>}
-                {data?.createdAt && <p className={styles.createdAt}>Создано: {formattedDate}</p>}
+                {data?.createdAt && <p className={styles.createdAt}>{TEXTS.CREATED} {formattedDate}</p>}
 
                 <div className={styles.details}>
-                    <TextWithIcon icon={<EyeIcon />} text={`${data?.views ?? 0} просмотров`} />
-                    <TextWithIcon icon={<HeartIcon />} text={`${data?.likes ?? 0} лайков`} />{' '}
+                    <TextWithIcon icon={<EyeIcon />} text={`${data?.views ?? 0} ${TEXTS.VIEWS}`} />
+                    <TextWithIcon icon={<HeartIcon />} text={`${data?.likes ?? 0} ${TEXTS.LIKES}`} />{' '}
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ export const OrderFilter = (): ReactElement => {
 
     const { updateOrderState } = useAppContext()
 
-    const filterData = Object.entries(OrderStatus).map(([_, key]) => ({
+    const filterData = Object.entries(OrderStatus).map(([, key]) => ({
             name: getOrderStatus(key),
             value: key
         }))

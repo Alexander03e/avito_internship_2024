@@ -28,7 +28,7 @@ export const AppContextProvider = ({ children }: PropsWithChildren): ReactElemen
             updateAdState,
             updateAppState,
         }),
-        [appState],
+        [appState, updateOrderState, updateAdState, updateAppState],
     );
 
     return <AppContext.Provider value={memorizedData}>{children}</AppContext.Provider>;

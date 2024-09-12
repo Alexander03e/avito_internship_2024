@@ -3,7 +3,7 @@ import styles from './search-input.module.scss';
 
 type Props = InputHTMLAttributes<HTMLInputElement>;
 
-export const SearchInput = forwardRef<HTMLInputElement, any>(
+export const SearchInput = forwardRef<HTMLInputElement, Props>(
     ({ ...props }: Props, ref): ReactElement => {
         return <input className={styles.wrapper} ref={ref} {...props} />;
     },

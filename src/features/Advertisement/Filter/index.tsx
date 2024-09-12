@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import styles from './ad-filter.module.scss';
 import { useForm } from 'react-hook-form';
 import { IFilterState } from './ad-filter.types';
@@ -15,7 +15,7 @@ export const AdFilter = (): ReactElement => {
         state: { openFilters },
     } = useAppContext();
     const { currentFilter } = useAdStateSelector();
-    const { register, handleSubmit, watch } = useForm<IFilterState>({
+    const { register, handleSubmit, watch, reset } = useForm<IFilterState>({
         defaultValues: {
             likesGte: currentFilter?.likes.from ?? undefined,
             likesLte: currentFilter?.likes.to ?? undefined,
@@ -50,8 +50,13 @@ export const AdFilter = (): ReactElement => {
     };
 
     const visibleFiltersHandler = () => {
-        updateAppState({openFilters: !openFilters})
+        updateAppState({ openFilters: !openFilters });
     };
+
+    const resetFilters = () => {
+        updateAdState({ currentFilter: null })
+        reset()
+    }
 
     if (!openFilters)
         return (
@@ -65,12 +70,20 @@ export const AdFilter = (): ReactElement => {
 
     return (
         <>
-            <Button
-                className={styles.toggleBtn}
-                variant='empty'
-                onClick={visibleFiltersHandler}
-                label='Скрыть фильтры'
-            />
+            <div className={styles.headingBtns}>
+                <Button
+                    className={styles.toggleBtn}
+                    variant='empty'
+                    onClick={visibleFiltersHandler}
+                    label='Скрыть фильтры'
+                />
+                <Button
+                    className={styles.toggleBtn}
+                    variant='warn-empty'
+                    onClick={resetFilters}
+                    label='Сбросить фильтры'
+                />
+            </div>
             <form className={styles.wrapper} onSubmit={handleSubmit(handleSubmitForm)}>
                 <label>
                     <span>Количество лайков</span>

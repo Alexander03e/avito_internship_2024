@@ -10,12 +10,17 @@ import { OrderSort } from 'features/Order/Sort';
 import size from 'lodash/size';
 import { Button } from 'common/components/ui';
 import { useAppContext } from 'common/context/hooks';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { QUERY_PARAMS } from 'common/consts/paths';
 
 export const OrdersList = (): ReactElement => {
-    const { currentFilter, currentPriceSort, adId } = useOrderStateSelector();
+    const { currentFilter, currentPriceSort } = useOrderStateSelector();
     const { updateOrderState } = useAppContext();
     const { data, isError, isLoading } = useOrders(currentFilter, currentPriceSort);
+    
+    const [params] = useSearchParams()
+
+    const adId = params.get(QUERY_PARAMS.AD_ID) 
 
     const navigate = useNavigate()
     

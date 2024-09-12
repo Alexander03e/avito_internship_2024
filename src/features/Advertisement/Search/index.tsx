@@ -56,7 +56,7 @@ export const Search = () => {
         <div className={styles.wrapper}>
             <SearchInput
                 ref={inputRef as RefObject<HTMLInputElement>}
-                value={value}
+                value={value as string}
                 onChange={onChange}
                 placeholder={SEARCH_PLACEHOLDER}
             />
