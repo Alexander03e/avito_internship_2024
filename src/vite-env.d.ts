@@ -6,3 +6,9 @@ declare module '*.svg' {
     const content: FC<SVGProps<SVGElement>>;
     export default content;
 }
+
+export declare global {
+    interface URLSearchParams {
+        appendIfExists(key: string, value: unknown): void;
+    }
+}

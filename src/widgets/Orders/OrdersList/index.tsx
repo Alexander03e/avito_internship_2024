@@ -28,7 +28,7 @@ export const OrdersList = (): ReactElement => {
         return () => {
             updateOrderState({ adId: null, currentFilter: null, currentPriceSort: null });
         };
-    }, []);
+    }, [updateOrderState]);
     
     if (isError) return <>Ошибка при загрузке данных</>;
 

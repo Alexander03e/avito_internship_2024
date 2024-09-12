@@ -33,21 +33,13 @@ export const useAllAdvertisement = ({
 
     if (filters) {
         const { likes, price, views } = filters;
-
-        if (likes) {
-            likes.from && params.append('likes_gte', likes.from);
-            likes.to && params.append('likes_lte', likes.to);
-        }
-        if (price) {
-            price.from && params.append('price_gte', price.from);
-            price.to && params.append('price_lte', price.to);
-        }
-        if (views) {
-            views.from && params.append('views_gte', views.from);
-            views.to && params.append('views_lte', views.to);
-        }
+        params.appendIfExists('likes_gte', likes.from);
+        params.appendIfExists('likes_lte', likes.to);
+        params.appendIfExists('price_gte', price.from);
+        params.appendIfExists('price_lte', price.to);
+        params.appendIfExists('views_gte', views.from);
+        params.appendIfExists('views_lte', views.to);
     }
-
     const query = useQuery({
         queryKey: [KEYS.ADS, searchQuery, start, limit, filters],
         queryFn: () => {

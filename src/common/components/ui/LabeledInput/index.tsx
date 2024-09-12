@@ -4,6 +4,7 @@ import cn from 'classnames';
 
 type GenericProps = {
     label: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     registerInput: any;
     error?: string;
 };
